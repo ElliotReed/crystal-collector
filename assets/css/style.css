@@ -12,11 +12,23 @@ body {
 }
 
 .btn {
-    height:2em;
-    width: 2em;
+    padding: 0;
+    margin: 0;
+    height:300px;
+    width: 300px;
+    background-color: transparent;  
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    background-size: 100%;
 }
 
 .btn-1 {
-    background-image: url("../images/red.png");
-    background-repeat: no-repeat;
+    background: url('../../assets/images/red.png') no-repeat center center fixed;
+    /* background-repeat: no-repeat; */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
