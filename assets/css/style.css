@@ -1,0 +1,22 @@
+body {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 768px) {
+    width: 95%;
+}
+
+.btn {
+    height:2em;
+    width: 2em;
+}
+
+.btn-1 {
+    background-image: url("../images/red.png");
+    background-repeat: no-repeat;
+}
