@@ -1,6 +1,8 @@
 body {
-    font-size: 16px;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     line-height: 24px;
+    background-color: #E8D6CB;
 }
 
 .container {
@@ -11,11 +13,53 @@ body {
     width: 95%;
 }
 
+.header {
+    text-align: center;
+    font-size: 36px;
+    color: #D0ADA7;
+    background-color: #5D2E46;
+    padding: 30px;
+}
+
+.instructions {
+    margin: 20px 0;
+    width: 60%;
+}
+
+.win-lose {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    width: 25%;
+    color: #5D2E46;
+    margin: 25px auto;
+    padding: 20px;
+    /* background-color: #5D2E46; */
+}
+
+.currentTotal,
+.targetNumber {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    padding: 30px;
+    margin: 20px auto;
+    width: 25%;
+    line-height: 80px;
+    color: #E8D6CB;
+    background-color: #5D2E46;
+}
+
+.crystals {
+    justify-content: space-between;
+    display: flex;
+
+}
 .btn {
     padding: 0;
     margin: 0;
-    height:300px;
-    width: 300px;
+    height:200px;
+    width: 200px;
     background-color: transparent;  
     border: none;
     cursor:pointer;
@@ -25,10 +69,33 @@ body {
 }
 
 .btn-1 {
-    background: url('../../assets/images/red.png') no-repeat center center fixed;
-    /* background-repeat: no-repeat; */
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('../../assets/images/red.png') no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+}
+
+.btn-2 {
+    background: url('../../assets/images/green.png') no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+}
+
+.btn-3 {
+    background: url('../../assets/images/blue.png') no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+}
+
+.btn-4 {
+    background: url('../../assets/images/purple.png') no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
 }
