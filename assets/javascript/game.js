@@ -86,7 +86,7 @@ function displayWinLose() {
 function displayMessage(trueFalse) {
     
     $("#message").text(getMessage(trueFalse));
-    $("#winLossMessage").text("You have won " + wins + " time(s) and lost " + losses + " times.");
+    $("#winLossMessage").text("You have won " + wins + " time(s) and lost " + losses + " time(s).");
     $(".messages").css({'display': 'block'});
     $("#dismiss").click(function() {
         $(".messages").css({'display': 'none'}); 
