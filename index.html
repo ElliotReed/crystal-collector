@@ -9,45 +9,67 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    
+    <header class="header">
+        <h1>The Crystal Collector Game!</h1>            
+    </header>
+    
     <div class="container">
-
-        <header class="header">
-            <h1>The Crystal Collector Game!</h1>            
-        </header>
+         
+            <div class="messages">
+                <p id="message" class="message"></p>
+                <p id="winLossMessage" class="winLossMessage"></p>
+                <button class="dismiss" id="dismiss">"OK"</button>
+            </div>
 
         <section class="instructions">
-                <p>
-                    You will be given a random number at the start of the game.
-                </p>
-                <p>
-                    There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.
-                </p>
-                <p>
-                    You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number.
-                </p>
-                <p>
-                    The value of each crystal is hidden from you until you click on it.
-                </p>
-                <p>
-                    Each time when the game starts, the game will change the values of each crystal.
-                </p>
+            <p>
+                You will be given a random number at the start of the game.
+            </p>
+            <p>
+                There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.
+            </p>
+            <p>
+                You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number.
+            </p>
+            <p>
+                The value of each crystal is hidden from you until you click on it.
+            </p>
+            <p>
+                Each time when the game starts, the game will change the values of each crystal.
+            </p>
         </section> 
 
-        <table class="win-lose">
-            <tr>
-                <th>Wins</th>
-                <th>Losses</th> 
-            </tr>
+        <section class="elementRow">
+            <div class="elementLabel">
+                Scoreboard:
+                <table class="win-lose">
+                    <thead>
+                        <tr>
+                            <th>Wins</th>
+                            <th>Losses</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="win">0</td>
+                            <td id="loss">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <tr>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-        </table>
+            <div class="elementLabel">
+                Random Number:
+                <div class="targetNumber"></div>
+            </div>
 
-        <section class="targetNumber">
-                39
+            <div class="elementLabel">
+                Your total:
+                <div class="currentTotal">0</div>
+            </div>
         </section>
+
         
         <section class="crystals">
             <button class="btn btn-1"></button>
@@ -55,14 +77,18 @@
             <button class="btn btn-3"></button>
             <button class="btn btn-4"></button>
         </section>
-
-        <section class="currentTotal">
-                current total score
-        </section>
        
     </div><!-- /.container -->
     
+    <footer class="footer">
+        &copy; copyright 2018 Elliot Reed
+    </footer>
 
+    <script 
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
     <script src="assets/javascript/game.js"></script>
 </body>
 </html>
