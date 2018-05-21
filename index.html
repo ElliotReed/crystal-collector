@@ -33,9 +33,9 @@
     </div>
     
     <section class="gameResults">
-      <div class="resultBox">
-        Scoreboard:
-        <table class="win-lose">
+      <div id="scoreboard" class="resultBox">
+        <div class="resultBox__label">Scoreboard:</div>
+        <table class="scoreboard">
           <thead>
             <tr>
               <th>Wins</th>
@@ -52,12 +52,14 @@
       </div>
       
       <div class="resultBox">
-        Random Number:
+        <div class="resultBox__label">Random Number:</div>
+        
         <div class="targetNumber"></div>
       </div>
       
       <div class="resultBox">
-        Your Total:
+        <div class="resultBox__label">Your Total:</div>
+        
         <div class="currentTotal">0</div>
       </div>
     </section>

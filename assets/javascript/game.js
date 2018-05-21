@@ -17,30 +17,42 @@ function playGame() {
 
   // Click event for crystals
   $("#btn-1").on("click", function () {
+    gemClickEffect(1);
     currentTotal = currentTotal + crystal1; // Add crystal value to crystal total
     displayCurrentTotal(currentTotal);
     checkGameStatus(currentTotal, randomNumber);
   });
 
   $("#btn-2").on("click", function () {
+    gemClickEffect(2);
     currentTotal = currentTotal + crystal2; // Add crystal value to crystal total
     displayCurrentTotal(currentTotal);
     checkGameStatus(currentTotal, randomNumber);
   });
 
   $("#btn-3").on("click", function () {
+    gemClickEffect(3);
     currentTotal = currentTotal + crystal3; // Add crystal value to crystal total
     displayCurrentTotal(currentTotal);
     checkGameStatus(currentTotal, randomNumber);
   });
 
   $("#btn-4").on("click", function () {
+    gemClickEffect(4);
     currentTotal = currentTotal + crystal4; // Add crystal value to crystal total
     displayCurrentTotal(currentTotal);
     checkGameStatus(currentTotal, randomNumber);
   });
 }
 
+//  gemClickEffect animation
+function gemClickEffect(buttonNumber) {
+  var btn = "#btn-" + buttonNumber;
+  $(btn).addClass("gemClickEffect");
+  setTimeout(function() {
+    $(btn).removeClass("gemClickEffect");
+  }, 200);
+}
 // Reset
 function resetPuzzle() {
 
@@ -214,3 +226,4 @@ playGame();
     }
   }
 })();
+
