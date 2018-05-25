@@ -1,13 +1,8 @@
 /* #region Variables */
 
 :root {
-	--margin: .5em;
-	--padding: .5em;
-	--blue: #3FC2F8;
-	--green: #4c9e08;
-	--red:#9e084c;
-	--orange: #f8a83f;
-	--black: rgba(0, 0, 0, 1);
+	--margin: 1em;
+	--padding: 1em;
 	--theme-light: rgb(232, 214, 203);
 	--theme-dark: rgb(93, 46, 70);
 	--theme-dark-gradient: rgba(var(--theme-dark), 0.75), var(--theme-dark), rgba(var(--theme-dark), 0.75);
@@ -40,9 +35,8 @@ html {
 	-ms-text-size-adjust: 100%;
 	-ms-overflow-style: scrollbar;
 	-webkit-tap-highlight-color: transparent;
-	background: #ffffff url("./../images/castle.svg") no-repeat;
+	background: #ffffff url("./../images/bg_castle.png") no-repeat;
 	background-size: cover;
-	
 }
 
 @media screen and (min-width: 320px) {
@@ -60,7 +54,74 @@ html {
 body {
 	line-height: 1.5em;
 	position: relative;
-	font-family: var(--font-family-sans-serif);
+	font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+	/* display: flex; */
+	/* flex-direction: column; */
+}
+
+h1 {
+	display: block;
+	font-size: 2em;
+	margin-top: 0.67em;
+	margin-bottom: 0.67em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+h2 {
+	display: block;
+	font-size: 1.5em;
+	margin-top: 0.83em;
+	margin-bottom: 0.83em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+h3 {
+	display: block;
+	font-size: 1.17em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+h4 {
+	display: block;
+	font-size: 1em;
+	margin-top: 1.33em;
+	margin-bottom: 1.33em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+h5 {
+	display: block;
+	font-size: .83em;
+	margin-top: 1.67em;
+	margin-bottom: 1.67em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+h6 {
+	display: block;
+	font-size: .67em;
+	margin-top: 2.33em;
+	margin-bottom: 2.33em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+}
+
+p {
+	margin: var(--margin) 0;
+	text-align: justify;
 }
 
 button {
@@ -93,6 +154,28 @@ button:focus {
 /*========== Components ==========*/
 
 /* #region Header/Footer */
+
+.header {
+	text-align: center;
+	color: var(--theme-dark);
+	/* background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark),rgba(93, 46, 70, 0.75)); */
+	/* padding: var(--padding); */
+}
+
+.header h1 {
+	margin: 0;
+	padding: calc(var(--padding)/4);
+}
+
+/* .header h1::before {
+	content: attr(data-text);
+	position: relative;
+	left: 8em;
+	top: 0em;
+	color: var(--theme-light);
+	opacity: .25;
+} */
+
 .footer {
 	text-align: center;
 	background-color: #5D2E46;
@@ -105,6 +188,21 @@ button:focus {
 }
 
 /* #endregion Header/Footer */
+
+/* #region Containers */
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+	.container {
+		width: 100%;
+	}
+}
+
+/* #endregion Containers*/
 
 /* #region Button*/
 
@@ -136,7 +234,7 @@ button:focus {
 
 .btn:focus,
 .btn.focus {
-	outline: none;
+	outline: 0;
 	box-shadow: 0 0 0 0.2rem;
 }
 
@@ -252,86 +350,89 @@ fieldset:disabled a.btn {
 
 /* #endregion Modal */
 
-/* #region Scoreboard */
-.scoreboard {
-	display: flex;
-	justify-content: center;
-}
-
-.score-label {
-	margin-right: .25em;
-	font-size: .9em; 
-}
-
-.score {
-	margin-right: 1em;
-	font-weight: bold;
-}
-
-#wins {
-	color: var(--green);
-}
-
-#losses {
-	color: var(--red);
-}
-/* #endregion Scoreboard */
-
-/* #region Game */
-.game {
-	display: flex;
-	justify-content: center;
-	flex-wrap: nowrap;
+.gameResults {
+	justify-content: space-evenly;
+	/* display: flex; */
 	margin: calc(var(--margin)/2);
-	/* border: 1px solid white; */
+	flex-wrap: wrap;
+	border: 1px solid white;
 }
 
-.game-box {
-	/* border: 1px solid black; */
-	width: 50%;
-	max-width: 400px;
+.resultBox {
+	/* display: block; */
+	height: 7em;
+	border: 1px solid black;
+	margin: var(--margin);
+	/* padding: var(--padding); */
+	/* width: 30%; */
+	flex-grow: 1; 
+	display: flex;
+	flex-direction: column;
+}
+
+.scoreboard,
+.currentTotal,
+.targetNumber {
 	text-align: center;
+	font-size: 1.25em;
+	font-weight: 600;
 	flex-grow: 1;
+	/* padding: var(--padding); */
+	/* width: 100%; */
+	/* height: 100%; */
+	/* line-height: 80px; */
+	color: #E8D6CB;
+	background-color: rgba(93, 46, 70, 0.808);
+	/* display:none;  */
 }
 
-.targetNumber,
-.currentTotal {
-	font-size: 5em;
-	font-weight: bolder;
-	color: white;
-	margin: calc(var(--margin)*1);
-	text-shadow:
-	-1px -1px 0 #000,  
-	 1px -1px 0 #000,
-	 -1px 1px 0 #000,
-		1px 1px 0 #000;
+.resultBox__label {
+	color: var(--theme-dark);
+	background-color: var(--theme-light);
 }
 
-@media screen and (max-width: 450px) {
-	.targetNumber,
-.currentTotal {
-	font-size: 4em;
+#scoreboard {
+	min-width: 10em;
+	flex-grow: 2;
+	/* line-height: 70px; */
+	/* table-layout: fixed; */
+	/* white-space: nowrap; */
+}
+
+.scoreboard th {
+	/* width: 50%; */
+}
+
+/* #region Crystals */
+
+.crystals,
+.btn-group {
+	display: flex;
+	/* border: 1em solid #5D2E46; */
+}
+
+.crystals {
+	flex-wrap: wrap;
+}
+
+.btn-group button:focus {
+	border: none;
+}
+
+.btn-group {
+	width: 50%;
+	justify-content: space-around;
+}
+
+@media screen and (max-width: 667px) {
+	.btn-group {
+		width: 100%;
 	}
 }
 
-.game-box__label {
-	margin: calc(var(--margin)*2);
-	font-size: 1em;
-	color: var(--black);
-	font-weight: bold;
-}
-/* #endregion Game */
-
-/* #region Crystals */
-.crystals {
-	display: flex;
-	/* border: 1px solid #5D2E46; */
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
 .btn--crystal {
-	margin: var(--margin);
+	padding: 1em;
+	margin: 0;
 	height: 200px;
 	width: 200px;
 	background-color: transparent;
@@ -342,16 +443,8 @@ fieldset:disabled a.btn {
 	background-size: 100%;
 }
 
-.btn--crystal:active,
 .btn--crystal:focus {
 	box-shadow: 0 0 0 0;
-}
-
-@media screen and (max-width: 414px) {
-	.btn--crystal {
-		max-width: 150px;
-		max-height: 150px;
-	}
 }
 
 #btn-1 {
@@ -390,7 +483,7 @@ fieldset:disabled a.btn {
 	animation-name: gemClickEffect;
 	animation-duration: 200ms;
 }	
-
+	
 @keyframes gemClickEffect {
 	0%, 100% {
 		-webkit-transform: scale(1);
@@ -400,16 +493,14 @@ fieldset:disabled a.btn {
 	}
 }
 
+@media screen and (max-width: 768px) {
+	#btn-1,
+	#btn-2,
+	#btn-3,
+	#btn-4 {
+		max-width: 100px;
+		max-height: 100px;
+	}
+}
 
 /* #endregion Crystals */
-
-	.logo {
-		border: 1px solid var(--red);
-		text-align: left;
-		color: var(--red);
-		padding: var(--padding);
-		font-size: 1.25em;
-		font-weight: bolder;
-		/* background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark),rgba(93, 46, 70, 0.75)); */
-		/* padding: var(--padding); */
-	}

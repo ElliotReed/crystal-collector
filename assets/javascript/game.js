@@ -1,77 +1,100 @@
-// Initialize global variables
-var wins = 0;
-var losses = 0;
-var newGame = true;
-var randomNumber = 0;
-var currentTotal = 0; // total
-var crystal1 = 0;
-var crystal2 = 0;
-var crystal3 = 0;
-var crystal4 = 0;
+// Create a state class
+var State = {
+  wins: 0,
+  losses: 0,
+  randomNumber: 0,
+  currentTotal: 0,
+  crystal1: 0,
+  crystal2: 0,
+  crystal3: 0,
+  crystal4: 0,
+  newGame: true,
 
-// Start game
-function playGame() {
-  wins = 0;
-  losses = 0;
-  resetPuzzle();
+  updateCurrentTotal: function (crystal) {
+    this.currentTotal += State[crystal];
+  },
 
-  // Click event for crystals
-  $("#btn-1").on("click", function () {
-    gemClickEffect(1);
-    currentTotal = currentTotal + crystal1; // Add crystal value to crystal total
-    displayCurrentTotal(currentTotal);
-    checkGameStatus(currentTotal, randomNumber);
-  });
+  displayRandomNumber: function () {
+    document.getElementById('targetNumber').textContent = this.randomNumber;
+  },
 
-  $("#btn-2").on("click", function () {
-    gemClickEffect(2);
-    currentTotal = currentTotal + crystal2; // Add crystal value to crystal total
-    displayCurrentTotal(currentTotal);
-    checkGameStatus(currentTotal, randomNumber);
-  });
+  displayCurrentTotal: function () {
+    document.getElementById('currentTotal').textContent = this.currentTotal;
+  },
 
-  $("#btn-3").on("click", function () {
-    gemClickEffect(3);
-    currentTotal = currentTotal + crystal3; // Add crystal value to crystal total
-    displayCurrentTotal(currentTotal);
-    checkGameStatus(currentTotal, randomNumber);
-  });
+  displayWinLose: function () {
+    document.getElementById('wins').textContent = this.wins;
+    document.getElementById('losses').textContent = this.losses;
+  },
 
-  $("#btn-4").on("click", function () {
-    gemClickEffect(4);
-    currentTotal = currentTotal + crystal4; // Add crystal value to crystal total
-    displayCurrentTotal(currentTotal);
-    checkGameStatus(currentTotal, randomNumber);
-  });
+  setCurrentTotal: function (strCrystal) {
+    this.updateCurrentTotal(strCrystal);
+    this.displayCurrentTotal();
+  },
+
+  checkGameStatus: function () {
+    if (!this.newGame) {
+      if (this.currentTotal === this.randomNumber) {
+        // If total equals target, you win
+        this.wins++;
+        displayMessage(true);
+        this.newGame = true;
+      } else if (this.currentTotal > this.randomNumber) { // If total over target, you lose
+        this.losses++;
+        displayMessage(false);
+        this.newGame = true;
+      }
+    }
+    this.displayWinLose();
+  },
+
+  // Reset
+  resetPuzzle: function () {
+    this.newGame = false;
+    // Get random number between 19 - 120
+    this.randomNumber = randomIntFromInterval(19, 120);
+    // display random number
+    this.displayRandomNumber();
+    // get crystal values 1 - 12
+    this.crystal1 = randomIntFromInterval(1, 12);
+    this.crystal2 = randomIntFromInterval(1, 12);
+    this.crystal3 = randomIntFromInterval(1, 12);
+    this.crystal4 = randomIntFromInterval(1, 12);
+    this.currentTotal = 0;
+    this.displayCurrentTotal();
+  }
+};
+
+// Click event for crystals
+var crystal1 = document.getElementById('btn-1');
+var crystal2 = document.getElementById('btn-2');
+var crystal3 = document.getElementById('btn-3');
+var crystal4 = document.getElementById('btn-4');
+// Add event listeners
+crystal1.addEventListener('click', function () {
+  crystalClick(crystal1, 'crystal1');
+});
+crystal2.addEventListener('click', function () {
+  crystalClick(crystal2, 'crystal2');
+});
+crystal3.addEventListener('click', function () {
+  crystalClick(crystal3, 'crystal3');
+});
+crystal4.addEventListener('click', function () {
+  crystalClick(crystal4, 'crystal4');
+});
+
+function crystalClick(crystal, strCrystal) {
+  gemClickEffect(crystal);
+  State.setCurrentTotal(strCrystal);
+  State.checkGameStatus();
 }
-
 //  gemClickEffect animation
-function gemClickEffect(buttonNumber) {
-  var btn = "#btn-" + buttonNumber;
-  $(btn).addClass("gemClickEffect");
-  setTimeout(function() {
-    $(btn).removeClass("gemClickEffect");
+function gemClickEffect(crystal) {
+  crystal.classList.add('gemClickEffect');
+  setTimeout(function () {
+    crystal.classList.remove('gemClickEffect');
   }, 200);
-}
-// Reset
-function resetPuzzle() {
-
-  // displayMessage("");
-
-  newGame = false;
-  // Get random number between 19 - 120
-  randomNumber = randomIntFromInterval(19, 120);
-
-  // display randon number
-  displayRandomNumber(randomNumber);
-
-  // get crystal values 1 - 12
-  crystal1 = randomIntFromInterval(1, 12);
-  crystal2 = randomIntFromInterval(1, 12);
-  crystal3 = randomIntFromInterval(1, 12);
-  crystal4 = randomIntFromInterval(1, 12);
-  currentTotal = 0;
-  displayCurrentTotal(currentTotal);
 }
 
 // Generate random numbers
@@ -79,21 +102,9 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// Display random number
-function displayRandomNumber(randomNumber) {
-  $(".targetNumber").text(randomNumber);
-}
 
-//Display total
-function displayCurrentTotal(currentTotal) {
-  $(".currentTotal").text(currentTotal);
-}
+State.resetPuzzle();
 
-function displayWinLose() {
-  $("#win").text(wins);
-  $("#loss").text(losses);
-
-}
 
 function displayMessage(trueFalse) {
   // Set appropriate plurals
@@ -160,44 +171,15 @@ function getMessage(trueFalse) {
   } else {
     return lossMessages[i];
   }
+  resetPuzzle();
 }
-
-function checkGameStatus(currentTotal, randomNumber) {
-  if (!newGame) {
-    if (currentTotal === randomNumber) { // If total equals target, you win
-      wins++;
-      displayMessage(true);
-      newGame = true;
-    } else if (currentTotal > randomNumber) { // If total over target, you lose
-      losses++;
-      displayMessage(false);
-      newGame = true;
-    } else { // If total under target, keep playing
-      newGame = false;
-    }
-  }
-
-  displayWinLose();
-
-  if (newGame) {
-    resetPuzzle();
-  }
-}
-
-
-
-
-
-
-
-playGame();
 
 // Instructions Modal
 (function () {
 
   const modal = document.getElementById('instructionModal');
 
-  const modalBtn = document.getElementById('modalBtn');
+  const openInstructions = document.getElementById('openInstructions');
 
   const closeBtn = document.getElementById('closeModal');
 
@@ -208,7 +190,7 @@ playGame();
     }
   };
 
-  modalBtn.addEventListener('click', openModal);
+  openInstructions.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
   window.addEventListener('click', clickOutsideModal);
 
@@ -226,4 +208,3 @@ playGame();
     }
   }
 })();
-
