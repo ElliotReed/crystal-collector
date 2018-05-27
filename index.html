@@ -43,50 +43,46 @@
     </section>
 
   <footer class="footer">
-    <a href="#" id="openInstructions" class="modal__openBtn-text">Instructions</a>
-    &copy; copyright 2018 Elliot Reed
+    <div class="copyright">
+      &copy; copyright 2018 Elliot Reed
+    </div>
+    <div class="open-modal">
+      <a href="#" id="openInstructions" >Instructions</a>
+    </div>
   </footer>
 
-  <section id="instructionModal" class="modal">
+  <div class="logo">
+    <div data-text="Crystal Collector!">Crystal Collector!</div>
+  </div>
+
+  <section id="instructionsModal" class="modal">
     <div class="modal-content">
-      <span id="closeModal" class="close-modal">&times;</span>
-      <div class="logo">
-        <div data-text="Crystal Collector!">Crystal Collector!</div>
-      </div>
-      <br />
-      <p>
-        You will be given a random number at the start of the game.
-      </p>
-      <p>
-        There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.
-      </p>
-      <p>
-        You win the game by matching your total score to the random number, you lose the game if your total score goes above the
-        random number.
-      </p>
-      <p>
-        The value of each crystal is hidden from you until you click on it.
-      </p>
-      <p>
-        Each time when the game starts, the game will change the values of each crystal.
-      </p>
+        <div id="instructionCloseButton" class="close-modal">&times;</div>
+        <br />
+        <div id="modalContent">
+            <p>You will be given a random number at the start of the game.</p>
+            <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+            <p>You win the game by matching your total score to the random number, you lose the game if your total score goes above the randomnumber.</p>
+            <p>The value of each crystal is hidden from you until you click on it.</p>
+            <p>Each time when the game starts, the game will change the values of each crystal.</p> 
+          </div>
+
     </div>
   </section>
 
-  <div id="messages" class="modal">
+  <section id="winLoseModal" class="modal">
     <div class="modal-content">
-      <h2>&#x1F641;</h2>
-      <h2 id="message" class="message"></h2>
-      <h5 id="winLossMessage" class="winLossMessage"></h5>
-      <div class="modal-footer">
-        <button id="dismiss" class="btn btn--dark dismiss">Close</button>
-      </div>
-    </div>
-  </div>
+        <div id="winLoseCloseButton" class="close-modal">&times;</div>
+        <br />
+        <div id="modalContent">
+            <h2 id="emoji" class="emoji"></h2>
+            <h2 id="message" class="message"></h2>
+            <h5 id="winLossMessage" class="winLossMessage"></h5>
+           </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-  </script>
+    </div>
+  </section>
+
   <script src="assets/javascript/game.js"></script>
 </body>
 

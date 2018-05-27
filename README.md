@@ -7,11 +7,12 @@ Crystal Collector is a math game created as a "bootcamp" project.
 * HTML
 * CSS
 * JavaScript
-* JQuery
 * Photoshop
 
-## ToDo
+*no jQuery was harmed in the making of this game:)*
 
-* Make game responsive
-* convert to vanilla js
-* Add score tracker
+## ToDo
+* ~~Make game responsive~~
+* ~~convert to vanilla js~~
+* seperate modal js 
+
