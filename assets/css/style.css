@@ -3,11 +3,12 @@
 :root {
 	--margin: .5em;
 	--padding: .5em;
-	--blue: #3FC2F8;
-	--green: #4c9e08;
-	--red:#9e084c;
-	--orange: #f8a83f;
-	--black: rgba(0, 0, 0, 1);
+	--blue: rgba(63, 193, 248, .95);
+	--green: rgba(76, 158, 8, .95);
+	--red: rgba(158, 8, 76, .95);
+	--orange: rgba(248, 168, 63, .95);
+	--black: rgba(0, 0, 0, .95);
+	--white: rgba(255, 255, 255, .95);
 	--theme-light: rgb(232, 214, 203);
 	--theme-dark: rgb(93, 46, 70);
 	--theme-dark-gradient: rgba(var(--theme-dark), 0.75), var(--theme-dark), rgba(var(--theme-dark), 0.75);
@@ -42,7 +43,6 @@ html {
 	-webkit-tap-highlight-color: transparent;
 	background: #ffffff url("./../images/castle.svg") no-repeat;
 	background-size: cover;
-	
 }
 
 @media screen and (min-width: 320px) {
@@ -93,15 +93,22 @@ button:focus {
 /*========== Components ==========*/
 
 /* #region Header/Footer */
+
 .footer {
-	text-align: center;
-	background-color: #5D2E46;
-	color: #E8D6CB;
-	padding: 15px;
+	display: flex;
+	align-items: center;
+	flex: 1 auto;
+	background-color: var(--green);
+	color: var(--white);
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	font-size: 14px;
+	font-size: .5em;
+}
+
+.copyright {
+	flex: 1 1 auto;
+	margin-left: var(--margin);
 }
 
 /* #endregion Header/Footer */
@@ -177,13 +184,13 @@ fieldset:disabled a.btn {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal-content {
 	position: relative;
-	background-color: var(--theme-light);
-	color: var(--theme-dark);
+	background-color: var(--blue);
+	color: var(--white);
 	margin: auto;
 	padding: var(--padding);
 	width: 75%;
@@ -212,47 +219,52 @@ fieldset:disabled a.btn {
 }
 
 .close-modal {
-	color: rgba(93, 46, 70, 0.75);
+	color: rgba(255, 255, 255, .5);
 	font-size: 1.5em;
+	position: relative;
 	float: right;
 }
 
+.open-modal:hover,
+.open-modal:focus,
 .close-modal:hover,
 .close-modal:focus {
 	cursor: pointer;
-	color: rgba(93, 46, 70, 1);
+	color: var(--white);
 }
 
-.modal__openBtn {
+.open-modal {
 	display: flex;
 	font-weight: 600;
 }
 
-.modal__openBtn a {
-	margin-left: auto;
-	margin-right: .25em;
+.open-modal a {
 	text-decoration: none;
-	color: var(--theme-dark);
+	color: var(--red);
+	margin-right: var(--margin);
 }
 
+.emoji,
 .winLossMessage,
 .message {
 	text-align: center;
 	transform: perspective(1px) translateY(-50%);
 }
 
-#message {
-	margin-top: 4em;
+.emoji {
+	padding: var(--padding);
+	font-size: 5em;
+	margin-bottom: 0;
 }
 
-.dismiss {
-	width: 100%;
-	margin-top: 4em;
+.message {
+	margin-top: 0em;
 }
 
 /* #endregion Modal */
 
 /* #region Scoreboard */
+
 .scoreboard {
 	display: flex;
 	justify-content: center;
@@ -260,7 +272,7 @@ fieldset:disabled a.btn {
 
 .score-label {
 	margin-right: .25em;
-	font-size: .9em; 
+	font-size: .9em;
 }
 
 .score {
@@ -275,9 +287,11 @@ fieldset:disabled a.btn {
 #losses {
 	color: var(--red);
 }
+
 /* #endregion Scoreboard */
 
 /* #region Game */
+
 .game {
 	display: flex;
 	justify-content: center;
@@ -300,17 +314,13 @@ fieldset:disabled a.btn {
 	font-weight: bolder;
 	color: white;
 	margin: calc(var(--margin)*1);
-	text-shadow:
-	-1px -1px 0 #000,  
-	 1px -1px 0 #000,
-	 -1px 1px 0 #000,
-		1px 1px 0 #000;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 @media screen and (max-width: 450px) {
 	.targetNumber,
-.currentTotal {
-	font-size: 4em;
+	.currentTotal {
+		font-size: 4em;
 	}
 }
 
@@ -320,12 +330,16 @@ fieldset:disabled a.btn {
 	color: var(--black);
 	font-weight: bold;
 }
+
 /* #endregion Game */
 
 /* #region Crystals */
+
 .crystals {
 	display: flex;
 	/* border: 1px solid #5D2E46; */
+	position: relative;
+	top: 10%;
 	flex-wrap: wrap;
 	justify-content: center;
 }
@@ -389,10 +403,11 @@ fieldset:disabled a.btn {
 .gemClickEffect {
 	animation-name: gemClickEffect;
 	animation-duration: 200ms;
-}	
+}
 
 @keyframes gemClickEffect {
-	0%, 100% {
+	0%,
+	100% {
 		-webkit-transform: scale(1);
 	}
 	50% {
@@ -400,16 +415,16 @@ fieldset:disabled a.btn {
 	}
 }
 
-
 /* #endregion Crystals */
 
-	.logo {
-		border: 1px solid var(--red);
-		text-align: left;
-		color: var(--red);
-		padding: var(--padding);
-		font-size: 1.25em;
-		font-weight: bolder;
-		/* background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark),rgba(93, 46, 70, 0.75)); */
-		/* padding: var(--padding); */
-	}
+.logo {
+	display: none;
+	border: 1px solid var(--red);
+	text-align: left;
+	color: var(--red);
+	padding: var(--padding);
+	font-size: 1.25em;
+	font-weight: bolder;
+	/* background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark),rgba(93, 46, 70, 0.75)); */
+	/* padding: var(--padding); */
+}

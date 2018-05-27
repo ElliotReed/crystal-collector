@@ -8,62 +8,124 @@ var State = {
   crystal2: 0,
   crystal3: 0,
   crystal4: 0,
-  newGame: true,
-
-  updateCurrentTotal: function (crystal) {
-    this.currentTotal += State[crystal];
-  },
-
-  displayRandomNumber: function () {
-    document.getElementById('targetNumber').textContent = this.randomNumber;
-  },
-
-  displayCurrentTotal: function () {
-    document.getElementById('currentTotal').textContent = this.currentTotal;
-  },
-
-  displayWinLose: function () {
-    document.getElementById('wins').textContent = this.wins;
-    document.getElementById('losses').textContent = this.losses;
-  },
-
-  setCurrentTotal: function (strCrystal) {
-    this.updateCurrentTotal(strCrystal);
-    this.displayCurrentTotal();
-  },
-
-  checkGameStatus: function () {
-    if (!this.newGame) {
-      if (this.currentTotal === this.randomNumber) {
-        // If total equals target, you win
-        this.wins++;
-        displayMessage(true);
-        this.newGame = true;
-      } else if (this.currentTotal > this.randomNumber) { // If total over target, you lose
-        this.losses++;
-        displayMessage(false);
-        this.newGame = true;
-      }
-    }
-    this.displayWinLose();
-  },
-
-  // Reset
-  resetPuzzle: function () {
-    this.newGame = false;
-    // Get random number between 19 - 120
-    this.randomNumber = randomIntFromInterval(19, 120);
-    // display random number
-    this.displayRandomNumber();
-    // get crystal values 1 - 12
-    this.crystal1 = randomIntFromInterval(1, 12);
-    this.crystal2 = randomIntFromInterval(1, 12);
-    this.crystal3 = randomIntFromInterval(1, 12);
-    this.crystal4 = randomIntFromInterval(1, 12);
-    this.currentTotal = 0;
-    this.displayCurrentTotal();
-  }
+  newGame: true
 };
+
+resetPuzzle();
+
+function updateCurrentTotal(crystal) {
+  State.currentTotal += State[crystal];
+}
+
+function displayRandomNumber() {
+  document
+    .getElementById('targetNumber')
+    .textContent = State.randomNumber;
+}
+
+function displayCurrentTotal() {
+  document
+    .getElementById('currentTotal')
+    .textContent = State.currentTotal;
+}
+
+function displayWinLose() {
+  document
+    .getElementById('wins')
+    .textContent = State.wins;
+  document
+    .getElementById('losses')
+    .textContent = State.losses;
+}
+
+function setCurrentTotal(strCrystal) {
+  updateCurrentTotal(strCrystal);
+  displayCurrentTotal();
+}
+
+function checkGameStatus() {
+  if (!State.newGame) {
+    if (State.currentTotal === State.randomNumber) {
+      // If total equals target, you win
+      State.wins++;
+      displayMessage(true);
+      State.newGame = true;
+    } else if (State.currentTotal > State.randomNumber) { // If total over target, you lose
+      State.losses++;
+      displayMessage(false);
+      State.newGame = true;
+    }
+  }
+  displayWinLose();
+  if (State.newGame) {
+    resetPuzzle();
+  }
+}
+
+// Reset
+function resetPuzzle() {
+  State.newGame = false;
+  // Get random number between 19 - 120
+  State.randomNumber = randomIntFromInterval(19, 120);
+  // display random number
+  displayRandomNumber();
+  // get crystal values 1 - 12
+  State.crystal1 = randomIntFromInterval(1, 12);
+  State.crystal2 = randomIntFromInterval(1, 12);
+  State.crystal3 = randomIntFromInterval(1, 12);
+  State.crystal4 = randomIntFromInterval(1, 12);
+  State.currentTotal = 0;
+  displayCurrentTotal();
+}
+
+function displayMessage(trueFalse) {
+  // Set appropriate plurals
+  var winTimes = 'times';
+  var lossTimes = 'times';
+  if (State.wins === 1) {
+    winTimes = 'time'
+  }
+  if (State.losses === 1) {
+    lossTimes = 'time'
+  }
+  // Manipulate elements
+  openModal(winLoseModal);
+
+  var emoji = document.getElementById('emoji');
+  var message = document.getElementById("message");
+  var messageObject = getMessage(trueFalse);
+  emoji.innerHTML = messageObject.emoji;
+  message.textContent = messageObject.message;
+
+  var winLossMessage = document.getElementById("winLossMessage");
+  winLossMessage.textContent = "You have won " + State.wins + " " + winTimes + " and lost " + State.losses + " " + lossTimes + ".";
+
+
+}
+
+function getMessage(trueFalse) {
+  var winMessages = [
+    {message: "Bravo!", emoji: "🤩"},
+    {message: "You win!", emoji: "😃"},
+    {message: "You're really getting the hang of this!", emoji: "😉"},
+    {message: "Good job!", emoji: "😊"}
+     ];
+
+  var lossMessages = [
+    {message: "Aww..., you lost, try again.", emoji: "😞"},
+    {message: "Better luck next time.", emoji: "😢"},
+    {message: "Are you kidding me?", emoji: "🙄"},
+    {message: "Sorry Charlie...", emoji: "😢"}
+     ];
+
+  var i = randomIntFromInterval(0, 3);
+
+  if (trueFalse) {
+    return winMessages[i];
+  } else {
+    return lossMessages[i];
+  }
+}
 
 // Click event for crystals
 var crystal1 = document.getElementById('btn-1');
@@ -86,14 +148,18 @@ crystal4.addEventListener('click', function () {
 
 function crystalClick(crystal, strCrystal) {
   gemClickEffect(crystal);
-  State.setCurrentTotal(strCrystal);
-  State.checkGameStatus();
+  setCurrentTotal(strCrystal);
+  checkGameStatus();
 }
 //  gemClickEffect animation
 function gemClickEffect(crystal) {
-  crystal.classList.add('gemClickEffect');
+  crystal
+    .classList
+    .add('gemClickEffect');
   setTimeout(function () {
-    crystal.classList.remove('gemClickEffect');
+    crystal
+      .classList
+      .remove('gemClickEffect');
   }, 200);
 }
 
@@ -102,109 +168,49 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// Modal
+// ===========================================================================
+var instructionsModal = document.getElementById('instructionsModal');
+var winLoseModal = document.getElementById('winLoseModal');
 
-State.resetPuzzle();
+var instructionCloseButton = document.getElementById('instructionCloseButton');
+instructionCloseButton.addEventListener('click', function () {
+  closeModal(instructionsModal);
+})
 
+var winLoseCloseButton = document.getElementById('winLoseCloseButton');
+winLoseCloseButton.addEventListener('click', function () {
+  closeModal(winLoseModal);
+})
 
-function displayMessage(trueFalse) {
-  // Set appropriate plurals
-  var winTimes = 'times';
-  var lossTimes = 'times';
-  if (wins === 1) {
-    winTimes = 'time'
-  }
-  if (losses === 1) {
-    lossTimes = 'time'
-  }
+var openInstructions = document.getElementById('openInstructions');
+openInstructions.addEventListener('click', function () {
+  openModal(instructionsModal);
+});
 
-  // Manipulate elements
-  const messagesModal = document.getElementById("messages");
-  messagesModal.style.display = "flex";
+window.addEventListener('click', clickOutsideModal);
 
-  const dismissBtn = document.getElementById("dismiss");
-  dismissBtn.addEventListener('click', function () {
-    messagesModal.style.display = "none";
-  })
-
-  const message = document.getElementById("message");
-  message.textContent = getMessage(trueFalse);
-
-  const winLossMessage = document.getElementById("winLossMessage");
-  winLossMessage.textContent = "You have won " + wins + " " + winTimes +
-    " and lost " + losses + " " + lossTimes + ".";
-
-  document.onkeyup = function (e) {
-    e = e || window.event;
-    if (e.keyCode == 27) {
-      messagesModal.style.display = "none";
-    }
-  };
-
-  window.addEventListener('click', clickOutsideModal);
-
-  function clickOutsideModal(e) {
-    if (e.target == messagesModal) {
-      messagesModal.style.display = "none";
-    }
-  }
+function openModal(modal) {
+  modal.style.display = "flex";
 }
 
-function getMessage(trueFalse) {
-  var winMessages = [
-    "Bravo!",
-    "You win!",
-    "You're really getting the hang of this!",
-    "Good job!"
-  ];
-
-  var lossMessages = [
-    "Aww..., you lost, try again.",
-    "Better luck next time.",
-    "Are you kidding me?",
-    "Sorry Charlie..."
-  ];
-
-  var i = randomIntFromInterval(0, 3);
-
-  if (trueFalse) {
-    return winMessages[i];
-  } else {
-    return lossMessages[i];
-  }
-  resetPuzzle();
+function closeModal(modal) {
+  modal.style.display = "none";
 }
 
-// Instructions Modal
-(function () {
-
-  const modal = document.getElementById('instructionModal');
-
-  const openInstructions = document.getElementById('openInstructions');
-
-  const closeBtn = document.getElementById('closeModal');
-
-  document.onkeyup = function (e) {
-    e = e || window.event;
-    if (e.keyCode == 27) {
-      modal.style.display = "none";
-    }
-  };
-
-  openInstructions.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  window.addEventListener('click', clickOutsideModal);
-
-  function openModal() {
-    modal.style.display = "flex";
+function clickOutsideModal(e) {
+  if (e.target == instructionsModal) {
+    instructionsModal.style.display = "none";
+  } else if (e.target == winLoseModal) {
+    winLoseModal.style.display = "none";
   }
-
-  function closeModal() {
-    modal.style.display = "none";
+}
+document.onkeyup = function (e) {
+  e = e || window.event;
+  if (e.keyCode == 27) {
+    document
+      .querySelector('.modal')
+      .style
+      .display = "none";
   }
-
-  function clickOutsideModal(e) {
-    if (e.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-})();
+};
