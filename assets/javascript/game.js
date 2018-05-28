@@ -148,6 +148,7 @@ crystal4.addEventListener('click', function () {
 
 function crystalClick(crystal, strCrystal) {
   gemClickEffect(crystal);
+  playClickSound();
   setCurrentTotal(strCrystal);
   checkGameStatus();
 }
@@ -163,6 +164,13 @@ function gemClickEffect(crystal) {
   }, 200);
 }
 
+function playClickSound() {
+  console.log('clicked')
+  var clickSound = new Audio('./assets/audio/pop.mp3');
+  clickSound.loop = false;
+  clickSound.volume = .25;
+  clickSound.play();
+}
 // Generate random numbers
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)

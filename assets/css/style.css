@@ -8,6 +8,7 @@
 	--red: rgba(158, 8, 76, .95);
 	--orange: rgba(248, 168, 63, .95);
 	--black: rgba(0, 0, 0, .95);
+	--black-rgb: (0, 0, 0);
 	--white: rgba(255, 255, 255, .95);
 	--theme-light: rgb(232, 214, 203);
 	--theme-dark: rgb(93, 46, 70);
@@ -20,7 +21,6 @@
 /* #endregion Variables */
 
 /* #region Base */
-
 *,
 *::before,
 *::after {
@@ -93,7 +93,6 @@ button:focus {
 /*========== Components ==========*/
 
 /* #region Header/Footer */
-
 .footer {
 	display: flex;
 	align-items: center;
@@ -103,12 +102,23 @@ button:focus {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	font-size: .5em;
+	font-size: 1em;
 }
 
 .copyright {
 	flex: 1 1 auto;
 	margin-left: var(--margin);
+	font-size: .5em;
+}
+
+.open-instructions {
+  opacity: .5;
+	transition: 500ms;
+}
+
+.open-instructions:hover {
+  opacity: 1;
+	transition: 500ms;
 }
 
 /* #endregion Header/Footer */
@@ -174,7 +184,6 @@ fieldset:disabled a.btn {
 /* #endregion Button*/
 
 /* #region Modal */
-
 .modal {
 	display: none;
 	position: fixed;
@@ -209,7 +218,7 @@ fieldset:disabled a.btn {
 }
 
 .modal-content p {
-	padding: 0;
+	padding: var(--padding);
 	display: flex;
 }
 
@@ -219,10 +228,11 @@ fieldset:disabled a.btn {
 }
 
 .close-modal {
-	color: rgba(255, 255, 255, .5);
-	font-size: 1.5em;
 	position: relative;
 	float: right;
+	font-size: 1.5em;
+	color: rgba(255, 255, 255, .5);
+	transition: 500ms;
 }
 
 .open-modal:hover,
@@ -231,6 +241,7 @@ fieldset:disabled a.btn {
 .close-modal:focus {
 	cursor: pointer;
 	color: var(--white);
+	transition: 500ms;
 }
 
 .open-modal {
@@ -272,12 +283,13 @@ fieldset:disabled a.btn {
 
 .score-label {
 	margin-right: .25em;
+	font-weight: 600;
 	font-size: .9em;
 }
 
 .score {
 	margin-right: 1em;
-	font-weight: bold;
+	font-weight: 800;
 }
 
 #wins {
@@ -417,14 +429,62 @@ fieldset:disabled a.btn {
 
 /* #endregion Crystals */
 
+/* #region Logo */
 .logo {
-	display: none;
-	border: 1px solid var(--red);
-	text-align: left;
-	color: var(--red);
-	padding: var(--padding);
-	font-size: 1.25em;
+	position: absolute;
+	top: 35vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	z-index: 2;
+	width: 100%; 
+	line-height: 2.5em;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	font-weight: bolder;
-	/* background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark),rgba(93, 46, 70, 0.75)); */
-	/* padding: var(--padding); */
+	font-size: calc(2.5em + 0.5vw);
+	color: var(--red);
+	animation-name: logo;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
 }
+
+@media screen and (min-width: 600px) {
+	.logo {font-size: calc(3.5em + 0.5vw)}
+}
+
+@keyframes logo {
+	0% {
+		/* -ms-transform: translate(50px, 100px); IE 9 */
+    /* -webkit-transform: translate(50px, 100px); Safari */
+		transform: translate(0, -1000px);
+		transform: ScaleX(0);
+		opacity: 0;
+	}
+	25% {
+		transform: translate(0, 0);
+		transform: ScaleX(1);
+		opacity: 1;
+	}
+	50% {
+		transform: translate(0, 0);
+		opacity: 1;
+	}
+	75% {
+		opacity: 0;
+	}
+	100% {
+		transform: translate(0, -1000px);
+	}
+}
+
+.crystal,
+.collector {
+	width: 100%;
+	margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: .15em;
+	text-shadow: .025em .025em 1px var(--red), -.025em -.025em 1px var(--red), .075em .075em 1px rgba(0, 0, 0, .5);
+}
+/* #endregion Logo */
