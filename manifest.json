@@ -1,0 +1,17 @@
+{
+  "name": "Crystal Collector",
+  "short_name": "Crystal Collector",
+  "theme_color": "#23B8F7",
+  "background_color": "#23B8F7",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html"
+}
