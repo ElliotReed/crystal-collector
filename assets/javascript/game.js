@@ -165,8 +165,7 @@ function gemClickEffect(crystal) {
 }
 
 function playClickSound() {
-  console.log('clicked');
-  var clickSound = new Audio('./assets/audio/pop.mp3');
+  var clickSound = new Audio('./assets/audio/click.mp3');
   clickSound.loop = false;
   clickSound.volume = .25;
   clickSound.play();

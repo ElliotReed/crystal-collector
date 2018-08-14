@@ -24,7 +24,8 @@
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 html,
@@ -32,12 +33,15 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	width: 100%;
 }
 
 html {
 	font-size: 18px;
 	font-family: sans-serif;
-	text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	   -moz-text-size-adjust: none;
+	        text-size-adjust: none;
 	-ms-text-size-adjust: 100%;
 	-ms-overflow-style: scrollbar;
 	-webkit-tap-highlight-color: transparent;
@@ -70,7 +74,8 @@ button {
 	line-height: inherit;
 	overflow: visible;
 	text-transform: none;
-	appearance: inherit;
+	-moz-appearance: inherit;
+	     appearance: inherit;
 	-webkit-appearance: button;
 	border-radius: 0;
 }
@@ -94,9 +99,15 @@ button:focus {
 
 /* #region Header/Footer */
 .footer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	flex: 1 auto;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1 auto;
+	        flex: 1 auto;
 	background-color: var(--green);
 	color: var(--white);
 	position: fixed;
@@ -106,6 +117,8 @@ button:focus {
 }
 
 .copyright {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 	margin-left: var(--margin);
 	font-size: .5em;
@@ -113,11 +126,15 @@ button:focus {
 
 .open-instructions {
   opacity: .5;
+	-webkit-transition: 500ms;
+	-o-transition: 500ms;
 	transition: 500ms;
 }
 
 .open-instructions:hover {
   opacity: 1;
+	-webkit-transition: 500ms;
+	-o-transition: 500ms;
 	transition: 500ms;
 }
 
@@ -136,13 +153,16 @@ button:focus {
 	-ms-user-select: none;
 	user-select: none;
 	border: 1px solid transparent;
-	/* padding: var(--padding); */
 	margin: var(--margin);
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
 	line-height: 1.5;
 	border-radius: 0.25rem;
+	-webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	-o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 	overflow: hidden;
 }
 
@@ -154,7 +174,8 @@ button:focus {
 .btn:focus,
 .btn.focus {
 	outline: none;
-	box-shadow: 0 0 0 0.2rem;
+	-webkit-box-shadow: 0 0 0 0.2rem;
+	        box-shadow: 0 0 0 0.2rem;
 }
 
 .btn.disabled,
@@ -177,6 +198,9 @@ fieldset:disabled a.btn {
 }
 
 .btn--dark {
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(93, 46, 70, 0.75)), color-stop(var(--theme-dark)), to(rgba(93, 46, 70, 0.75)));
+	background: -webkit-linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark), rgba(93, 46, 70, 0.75));
+	background: -o-linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark), rgba(93, 46, 70, 0.75));
 	background: linear-gradient(rgba(93, 46, 70, 0.75), var(--theme-dark), rgba(93, 46, 70, 0.75));
 	color: var(--theme-light);
 }
@@ -203,11 +227,22 @@ fieldset:disabled a.btn {
 	margin: auto;
 	padding: var(--padding);
 	width: 75%;
-	box-shadow: var(--box-shadow);
-	animation-name: modalOpen;
-	animation-duration: 1s;
+	-webkit-box-shadow: var(--box-shadow);
+	        box-shadow: var(--box-shadow);
+	-webkit-animation-name: modalOpen;
+	        animation-name: modalOpen;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
 }
 
+@-webkit-keyframes modalOpen {
+	from {
+		opacity: 0
+	}
+	to {
+		opacity: 1
+	}
+}
 @keyframes modalOpen {
 	from {
 		opacity: 0
@@ -219,11 +254,15 @@ fieldset:disabled a.btn {
 
 .modal-content p {
 	padding: var(--padding);
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
 .modal-footer {
 	padding: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 
@@ -232,6 +271,8 @@ fieldset:disabled a.btn {
 	float: right;
 	font-size: 1.5em;
 	color: rgba(255, 255, 255, .5);
+	-webkit-transition: 500ms;
+	-o-transition: 500ms;
 	transition: 500ms;
 }
 
@@ -241,10 +282,14 @@ fieldset:disabled a.btn {
 .close-modal:focus {
 	cursor: pointer;
 	color: var(--white);
+	-webkit-transition: 500ms;
+	-o-transition: 500ms;
 	transition: 500ms;
 }
 
 .open-modal {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	font-weight: 600;
 }
@@ -259,7 +304,8 @@ fieldset:disabled a.btn {
 .winLossMessage,
 .message {
 	text-align: center;
-	transform: perspective(1px) translateY(-50%);
+	-webkit-transform: perspective(1px) translateY(-50%);
+	        transform: perspective(1px) translateY(-50%);
 }
 
 .emoji {
@@ -277,8 +323,12 @@ fieldset:disabled a.btn {
 /* #region Scoreboard */
 
 .scoreboard {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .score-label {
@@ -305,9 +355,14 @@ fieldset:disabled a.btn {
 /* #region Game */
 
 .game {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	flex-wrap: nowrap;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-ms-flex-wrap: nowrap;
+	    flex-wrap: nowrap;
 	margin: calc(var(--margin)/2);
 	/* border: 1px solid white; */
 }
@@ -317,7 +372,9 @@ fieldset:disabled a.btn {
 	width: 50%;
 	max-width: 400px;
 	text-align: center;
-	flex-grow: 1;
+	-webkit-box-flex: 1;
+	    -ms-flex-positive: 1;
+	        flex-grow: 1;
 }
 
 .targetNumber,
@@ -348,12 +405,16 @@ fieldset:disabled a.btn {
 /* #region Crystals */
 
 .crystals {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	/* border: 1px solid #5D2E46; */
 	position: relative;
 	top: 10%;
-	flex-wrap: wrap;
-	justify-content: center;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .btn--crystal {
@@ -370,7 +431,8 @@ fieldset:disabled a.btn {
 
 .btn--crystal:active,
 .btn--crystal:focus {
-	box-shadow: 0 0 0 0;
+	-webkit-box-shadow: 0 0 0 0;
+	        box-shadow: 0 0 0 0;
 }
 
 @media screen and (max-width: 414px) {
@@ -382,39 +444,39 @@ fieldset:disabled a.btn {
 
 #btn-1 {
 	background: url('../../assets/images/red.png') no-repeat center;
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-o-background-size: contain;
 	background-size: contain;
 }
 
 #btn-2 {
 	background: url('../../assets/images/green.png') no-repeat center;
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-o-background-size: contain;
 	background-size: contain;
 }
 
 #btn-3 {
 	background: url('../../assets/images/blue.png') no-repeat center;
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-o-background-size: contain;
 	background-size: contain;
 }
 
 #btn-4 {
 	background: url('../../assets/images/purple.png') no-repeat center;
-	-webkit-background-size: contain;
-	-moz-background-size: contain;
-	-o-background-size: contain;
 	background-size: contain;
 }
 
 .gemClickEffect {
-	animation-name: gemClickEffect;
-	animation-duration: 200ms;
+	-webkit-animation-name: gemClickEffect;
+	        animation-name: gemClickEffect;
+	-webkit-animation-duration: 200ms;
+	        animation-duration: 200ms;
+}
+
+@-webkit-keyframes gemClickEffect {
+	0%,
+	100% {
+		-webkit-transform: scale(1);
+	}
+	50% {
+		-webkit-transform: scale(.75);
+	}
 }
 
 @keyframes gemClickEffect {
@@ -433,9 +495,14 @@ fieldset:disabled a.btn {
 .logo {
 	position: absolute;
 	top: 35vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	z-index: 2;
 	width: 100%; 
 	line-height: 2.5em;
@@ -443,38 +510,79 @@ fieldset:disabled a.btn {
 	font-weight: bolder;
 	font-size: calc(2.5em + 0.5vw);
 	color: var(--red);
-	animation-name: logo;
-	animation-duration: 3s;
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-in-out;
+	-webkit-animation-name: logo;
+	        animation-name: logo;
+	-webkit-animation-duration: 3s;
+	        animation-duration: 3s;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
 }
 
 @media screen and (min-width: 600px) {
 	.logo {font-size: calc(3.5em + 0.5vw)}
 }
 
-@keyframes logo {
+@-webkit-keyframes logo {
 	0% {
 		/* -ms-transform: translate(50px, 100px); IE 9 */
     /* -webkit-transform: translate(50px, 100px); Safari */
-		transform: translate(0, -1000px);
-		transform: ScaleX(0);
+		-webkit-transform: translate(0, -1000px);
+		        transform: translate(0, -1000px);
+		-webkit-transform: ScaleX(0);
+		        transform: ScaleX(0);
 		opacity: 0;
 	}
 	25% {
-		transform: translate(0, 0);
-		transform: ScaleX(1);
+		-webkit-transform: translate(0, 0);
+		        transform: translate(0, 0);
+		-webkit-transform: ScaleX(1);
+		        transform: ScaleX(1);
 		opacity: 1;
 	}
 	50% {
-		transform: translate(0, 0);
+		-webkit-transform: translate(0, 0);
+		        transform: translate(0, 0);
 		opacity: 1;
 	}
 	75% {
 		opacity: 0;
 	}
 	100% {
-		transform: translate(0, -1000px);
+		-webkit-transform: translate(0, -1000px);
+		        transform: translate(0, -1000px);
+	}
+}
+
+@keyframes logo {
+	0% {
+		/* -ms-transform: translate(50px, 100px); IE 9 */
+    /* -webkit-transform: translate(50px, 100px); Safari */
+		-webkit-transform: translate(0, -1000px);
+		        transform: translate(0, -1000px);
+		-webkit-transform: ScaleX(0);
+		        transform: ScaleX(0);
+		opacity: 0;
+	}
+	25% {
+		-webkit-transform: translate(0, 0);
+		        transform: translate(0, 0);
+		-webkit-transform: ScaleX(1);
+		        transform: ScaleX(1);
+		opacity: 1;
+	}
+	50% {
+		-webkit-transform: translate(0, 0);
+		        transform: translate(0, 0);
+		opacity: 1;
+	}
+	75% {
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translate(0, -1000px);
+		        transform: translate(0, -1000px);
 	}
 }
 
