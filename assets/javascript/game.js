@@ -99,8 +99,6 @@ function displayMessage(trueFalse) {
 
   var winLossMessage = document.getElementById("winLossMessage");
   winLossMessage.textContent = "You have won " + State.wins + " " + winTimes + " and lost " + State.losses + " " + lossTimes + ".";
-
-
 }
 
 function getMessage(trueFalse) {

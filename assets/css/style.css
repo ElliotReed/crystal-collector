@@ -32,8 +32,8 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	height: 100%;
-	width: 100%;
+	min-height: 100vh;
+	min-width: 100vw;
 }
 
 html {
@@ -63,7 +63,7 @@ html {
 
 body {
 	line-height: 1.5em;
-	position: relative;
+	position: fixed;
 	font-family: var(--font-family-sans-serif);
 }
 
@@ -504,7 +504,7 @@ fieldset:disabled a.btn {
 	    -ms-flex-pack: center;
 	        justify-content: center;
 	z-index: 2;
-	width: 100%; 
+	width: 100%;
 	line-height: 2.5em;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	font-weight: bolder;
