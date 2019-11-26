@@ -25,7 +25,7 @@
 *::before,
 *::after {
 	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html,
@@ -40,8 +40,8 @@ html {
 	font-size: 18px;
 	font-family: sans-serif;
 	-webkit-text-size-adjust: none;
-	   -moz-text-size-adjust: none;
-	        text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	text-size-adjust: none;
 	-ms-text-size-adjust: 100%;
 	-ms-overflow-style: scrollbar;
 	-webkit-tap-highlight-color: transparent;
@@ -75,7 +75,7 @@ button {
 	overflow: visible;
 	text-transform: none;
 	-moz-appearance: inherit;
-	     appearance: inherit;
+	appearance: inherit;
 	-webkit-appearance: button;
 	border-radius: 0;
 }

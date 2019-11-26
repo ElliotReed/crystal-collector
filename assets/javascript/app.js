@@ -1,4 +1,3 @@
-// Create a state class
 var State = {
   wins: 0,
   losses: 0,
