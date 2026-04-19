@@ -11,7 +11,7 @@ env:
   VPS_USER: ${{ secrets.VPS_USER }}
 
   # Project config
-  SITE_NAME: crystal-collector.elliotreed.dev
+  SITE_NAME: crystal-collector
   NODE_VERSION: "24"
 
 jobs:
